@@ -15,7 +15,6 @@ test('Docs link', async ({ page }) => {
 });
 
 test ('Github icon', async ({ page }) => {
- //   await expect(page.getByRole('link').locator(':scope.navbar__item.navbar__link.header-github-link')).toBeVisible();
     await expect(page.getByRole('link', { name: 'GitHub repository' })).toBeVisible();
 });
 
@@ -37,7 +36,8 @@ test ('use getByText', async ({ page }) => {
     await page.locator('input.new-todo').fill('Buy milk and bread');
     await page.locator('input.new-todo').press('Enter');
     await expect(page.getByText('Buy milk', { exact: true })).toBeVisible();
-    await page.getByText('Buy milk').click();
+    await page.getByText('Buy milk').first().click();
+    await expect(page.getByText('Buy milk').click()).rejects.toThrow();
     
 });
 
