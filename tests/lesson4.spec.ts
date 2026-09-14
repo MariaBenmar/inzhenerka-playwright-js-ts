@@ -6,7 +6,6 @@ test.beforeEach(async ({ page }) => {
     await page.goto('https://playwright.dev/');
 });     
 
-
 test('search button', async ({ page }) => {
     await expect(page.getByRole('button', { name: 'Search' })).toBeVisible();
 });
@@ -16,7 +15,8 @@ test('Docs link', async ({ page }) => {
 });
 
 test ('Github icon', async ({ page }) => {
-    await expect(page.getByRole('link').locator(':scope.navbar__item.navbar__link.header-github-link')).toBeVisible();
+ //   await expect(page.getByRole('link').locator(':scope.navbar__item.navbar__link.header-github-link')).toBeVisible();
+    await expect(page.getByRole('link', { name: 'GitHub repository' })).toBeVisible();
 });
 
 });
@@ -37,6 +37,8 @@ test ('use getByText', async ({ page }) => {
     await page.locator('input.new-todo').fill('Buy milk and bread');
     await page.locator('input.new-todo').press('Enter');
     await expect(page.getByText('Buy milk', { exact: true })).toBeVisible();
+    await page.getByText('Buy milk').click();
+    
 });
 
 test ('use getByLabel - checkbox Toggle all', async ({ page }) => {
