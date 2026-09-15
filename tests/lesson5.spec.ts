@@ -21,7 +21,6 @@ test.describe('CSS or xPath', () => {
             await page.locator('input.new-todo').press('Enter');
         }
         await page.locator('.todo-list li:nth-child(2) .toggle').click();
-        await page.locator('a[href$="#/completed"]').click();
         await expect(page.locator('.todo-list li.completed')).toHaveCount(1);   
         await expect(page.locator('.todo-list li:not(.completed)')).toHaveCount(2);
     });
@@ -31,8 +30,10 @@ test.describe('CSS or xPath', () => {
             await page.locator('input.new-todo').fill(`Task ${i}`);
             await page.locator('input.new-todo').press('Enter');
         }
-        await page.locator('xpath=//label[text()="Task 1"]/input/ancestor::li').click;
+        await page.locator('xpath=//label[text()="Task 1"]/ancestor::li').click();
+        await expect(page.locator('xpath=//label[text()="Task 1"]/ancestor::li')).not.toHaveClass(/completed/);
         await page.locator('li:has(label:text("Task 1"))').click();
+        await expect(page.locator('li:has(label:text("Task 1"))')).not.toHaveClass(/completed/);
         
         
         
