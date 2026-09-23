@@ -26,7 +26,7 @@ test.describe('errors, trace', () => {
             await expect(page.locator('.todo-list li.completed')).toHaveCount(1);   
             await expect(page.locator('.todo-list li:not(.completed)')).toHaveCount(2);
         } 
-        catch (error) {
+        finally {
         await context.tracing.stop({ path: 'test-results/trace.zip' });
         }
 
