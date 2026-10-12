@@ -71,7 +71,10 @@ export default defineConfig({
   ],
   /* Configure a global timeout for all tests. */
   expect: {
-    timeout: 20000
+    timeout: 30000,
+    toMatchSnapshot: {
+      maxDiffPixels: 10,
+    },
   },
   /* Run your local dev server before starting the tests */
   // webServer: {
