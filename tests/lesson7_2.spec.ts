@@ -13,7 +13,10 @@ test('timeout demo: test.setTimeout vs waitForTimeout', async ({ page }) => {
   await page.waitForTimeout(31000); // wait 31 seconds without conditions
 });
 
+
 test('wait for URL using waitForURL', async ({ page }) => {
+  await page.locator('input.new-todo').fill('Task 1');
+  await page.locator('input.new-todo').press('Enter');
   await page.getByRole('link', { name: 'Active' }).click();
   await page.waitForURL('**/active'); // no wait for "N seconds", but specific event - URL change
   await expect(page).toHaveURL(/#\/active/);
